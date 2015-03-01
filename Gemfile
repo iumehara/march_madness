@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 gem 'rails', '4.2.0'
 gem 'unicorn'
 gem 'pg'
@@ -17,10 +16,9 @@ gem 'jbuilder', '~> 2.0'
 
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-
 group :development, :test do
-	gem 'rspec-rails', '~> 3.0'
-	gem 'pry'
+  gem 'rspec-rails', '~> 3.0'
+  gem 'pry'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -32,4 +30,3 @@ group :development, :test do
 
   gem 'rubocop', require: false
 end
-

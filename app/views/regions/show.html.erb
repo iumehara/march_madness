@@ -1,0 +1,10 @@
+<div class="title-bar">
+	title bar
+</div>
+
+<div class="region-block">
+	<div class="round-block">Champion</div>
+	<% @rounds.each do |round| %>
+		<%= render 'rounds/round', round: round %>
+	<% end %>
+</div>

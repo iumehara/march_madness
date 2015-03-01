@@ -11,40 +11,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150228193752) do
-
+ActiveRecord::Schema.define(version: 20_150_301_075_321) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "games", force: :cascade do |t|
-    t.integer  "round_id"
-    t.integer  "next_game_id"
-    t.integer  "winner_id"
-    t.integer  "loser_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+  create_table 'games', force: :cascade do |t|
+    t.integer 'round_id'
+    t.integer 'next_game_id'
+    t.integer 'winner_id'
+    t.integer 'loser_id'
+    t.datetime 'created_at',   null: false
+    t.datetime 'updated_at',   null: false
   end
 
-  create_table "regions", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'regions', force: :cascade do |t|
+    t.string 'name'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "rounds", force: :cascade do |t|
-    t.integer  "region_id"
-    t.integer  "next_round_id"
-    t.integer  "team_count"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+  create_table 'rounds', force: :cascade do |t|
+    t.integer 'region_id'
+    t.integer 'next_round_id'
+    t.integer 'team_count'
+    t.datetime 'created_at',    null: false
+    t.datetime 'updated_at',    null: false
   end
 
-  create_table "teams", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "region_id"
-    t.integer  "seed"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'slots', force: :cascade do |t|
+    t.integer 'game_id'
+    t.integer 'team_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
+  create_table 'teams', force: :cascade do |t|
+    t.string 'name'
+    t.integer 'region_id'
+    t.integer 'seed'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+  end
 end

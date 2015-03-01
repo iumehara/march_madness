@@ -1,0 +1,5 @@
+<div class="round-block">
+	<% round.games.each do |game| %>
+		<%= render 'games/game', game: game, round_name: "round-of-#{round.team_count}" %>
+	<% end %>
+</div>
