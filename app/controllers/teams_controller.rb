@@ -1,4 +1,7 @@
 class TeamsController < ApplicationController
+
+  before_action :region_not_locked
+
   def create
     @team = Team.create(team_params)
     @slot = Slot.find(team_params[:slot_id])
@@ -19,6 +22,12 @@ class TeamsController < ApplicationController
   end
 
   private
+
+  def region_not_locked
+    team = Team.find(params[:id])
+    region = team.region
+    redirect_to region unless region.status == 0
+  end
 
   def team_params
     params.require(:team).permit(:region_id, :seed, :name, :slot_id)
