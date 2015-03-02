@@ -1,0 +1,5 @@
+<span class="team-display" id="team-display-<%= slot.team.id %>">
+	<%= link_to slot.team.display_name, edit_team_path(slot.team.id, slot_id: slot.id), remote: true %>
+</span>
+
+

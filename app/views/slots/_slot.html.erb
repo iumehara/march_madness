@@ -1,7 +1,15 @@
 <div style="height:50%; width:100%; display: table;">
 	<div style="display: table-cell; vertical-align:middle;">
-		<span style="display:inline-block; border:3px solid gray; padding:5px; width:100%;">
-			Team <%= slot.id %>
+		<span id="slot-<%= slot.id %>" style="display:inline-block; border:3px solid gray; padding:5px; width:100%;">
+			<% if slot.starting_slot? %>
+				<% if slot.team_id.present? %>
+					<%= render 'teams/team', slot: slot %>
+				<% else %>
+					<%= render 'teams/form', slot: slot %>
+				<% end %>
+			<% else %>
+				Slot <%= slot.id %>
+			<% end %>
 		</span>
 	</div>
 </div>

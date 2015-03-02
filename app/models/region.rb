@@ -26,9 +26,12 @@ class Region < ActiveRecord::Base
         next_round_id = nil
       end
 
+      starting_round = index == (ROUNDS_PER_REGION - 1) ? true : false
+
       rounds.create(
         team_count: current_team_count,
-        next_round_id: next_round_id)
+        next_round_id: next_round_id,
+        starting_round: starting_round)
     end
-    end
+  end
 end

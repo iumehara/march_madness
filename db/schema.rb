@@ -34,8 +34,9 @@ ActiveRecord::Schema.define(version: 20_150_301_075_321) do
     t.integer 'region_id'
     t.integer 'next_round_id'
     t.integer 'team_count'
-    t.datetime 'created_at',    null: false
-    t.datetime 'updated_at',    null: false
+    t.boolean 'starting_round'
+    t.datetime 'created_at',     null: false
+    t.datetime 'updated_at',     null: false
   end
 
   create_table 'slots', force: :cascade do |t|

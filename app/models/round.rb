@@ -6,6 +6,8 @@ class Round < ActiveRecord::Base
 
   has_many :games
 
+  has_many :slots, through: :games
+
   after_create :create_games
 
   private
