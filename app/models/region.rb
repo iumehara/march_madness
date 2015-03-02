@@ -2,6 +2,7 @@ class Region < ActiveRecord::Base
   has_many :rounds
   has_many :games, through: :rounds
   has_many :teams
+  has_many :brackets
 
   after_create :create_rounds
 
@@ -10,6 +11,12 @@ class Region < ActiveRecord::Base
 
     define_method "round_of_#{team_count}" do
       rounds.where(team_count: team_count).first
+    end
+  end
+
+  def starting_round
+    if rounds.where(starting_round: true).present?
+      rounds.where(starting_round: true).first
     end
   end
 

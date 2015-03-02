@@ -1,5 +1,4 @@
 class TeamsController < ApplicationController
-
   before_action :region_not_locked
 
   def create
@@ -24,9 +23,10 @@ class TeamsController < ApplicationController
   private
 
   def region_not_locked
-    team = Team.find(params[:id])
-    region = team.region
-    redirect_to region unless region.status == 0
+    if Team.where(id: params[:id]).present?
+      region = Team.find(params[:id]).region
+      redirect_to region unless region.status == 0
+    end
   end
 
   def team_params

@@ -11,49 +11,69 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150301075321) do
-
+ActiveRecord::Schema.define(version: 20_150_302_041_802) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "games", force: :cascade do |t|
-    t.integer  "round_id"
-    t.integer  "next_game_id"
-    t.integer  "winner_id"
-    t.integer  "loser_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+  create_table 'brackets', force: :cascade do |t|
+    t.integer 'region_id'
+    t.integer 'user_id'
+    t.integer 'status'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "regions", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "status",     default: 0
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+  create_table 'games', force: :cascade do |t|
+    t.integer 'round_id'
+    t.integer 'next_game_id'
+    t.integer 'winner_id'
+    t.integer 'loser_id'
+    t.datetime 'created_at',   null: false
+    t.datetime 'updated_at',   null: false
   end
 
-  create_table "rounds", force: :cascade do |t|
-    t.integer  "region_id"
-    t.integer  "next_round_id"
-    t.integer  "team_count"
-    t.boolean  "starting_round"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+  create_table 'regions', force: :cascade do |t|
+    t.string 'name'
+    t.integer 'status',     default: 0
+    t.datetime 'created_at',             null: false
+    t.datetime 'updated_at',             null: false
   end
 
-  create_table "slots", force: :cascade do |t|
-    t.integer  "game_id"
-    t.integer  "team_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'rounds', force: :cascade do |t|
+    t.integer 'region_id'
+    t.integer 'next_round_id'
+    t.integer 'team_count'
+    t.boolean 'starting_round'
+    t.datetime 'created_at',     null: false
+    t.datetime 'updated_at',     null: false
   end
 
-  create_table "teams", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "region_id"
-    t.integer  "seed"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'selections', force: :cascade do |t|
+    t.integer 'team_id'
+    t.integer 'slot_id'
+    t.integer 'region_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
+  create_table 'slots', force: :cascade do |t|
+    t.integer 'game_id'
+    t.integer 'team_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+  end
+
+  create_table 'teams', force: :cascade do |t|
+    t.string 'name'
+    t.integer 'region_id'
+    t.integer 'seed'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+  end
+
+  create_table 'users', force: :cascade do |t|
+    t.string 'name'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+  end
 end

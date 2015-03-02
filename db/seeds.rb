@@ -1,24 +1,39 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+# teams_array is an array of arrays, with seed# in the first position, and
+# entry_name in the second position.
+# The [seed, name] arrays should be ordered as they are to be shown in the
+# the bracket, from top to bottom.
 
-Team.create(region_id: 1, seed: 1, name: 'University of Kentucky')
-Team.create(region_id: 1, seed: 2, name: 'University of Virginia')
-Team.create(region_id: 1, seed: 3, name: 'Gonzaga University')
-Team.create(region_id: 1, seed: 4, name: 'Duke University')
-Team.create(region_id: 1, seed: 5, name: 'University of Wisconsin')
-Team.create(region_id: 1, seed: 6, name: 'Villanova University')
-Team.create(region_id: 1, seed: 7, name: 'University of Arizona')
-Team.create(region_id: 1, seed: 8, name: 'University of Kansas')
-Team.create(region_id: 1, seed: 9, name: 'Notre Dame University')
-Team.create(region_id: 1, seed: 10, name: 'University of Northern Iowa')
-Team.create(region_id: 1, seed: 11, name: 'Wichita State University')
-Team.create(region_id: 1, seed: 12, name: 'University of Iowa')
-Team.create(region_id: 1, seed: 13, name: 'University of Utah')
-Team.create(region_id: 1, seed: 14, name: 'University of Maryland')
-Team.create(region_id: 1, seed: 15, name: 'University of North Carolina')
-Team.create(region_id: 1, seed: 16, name: 'University of Oklahoma')
+teams_array = [
+  [1, 'University of Kentucky'],
+  [16, 'University of Oklahoma'],
+  [8, 'University of Kansas'],
+  [9, 'Notre Dame University'],
+  [5, 'University of Wisconsin'],
+  [12, 'University of Iowa'],
+  [4, 'Duke University'],
+  [13, 'University of Utah'],
+  [3, 'Gonzaga University'],
+  [14, 'University of Maryland'],
+  [6, 'Villanova University'],
+  [11, 'Wichita State University'],
+  [7, 'University of Arizona'],
+  [10, 'University of Northern Iowa'],
+  [2, 'University of Virginia'],
+  [15, 'University of North Carolina']
+]
+
+region = Region.find(1)
+starting_round = region.starting_round
+starting_games = starting_round.games
+current_index = -1
+starting_games.each_with_index do |game, _game_index|
+  game.slots.each_with_index do |slot, _slot_index|
+    current_index += 1
+    Team.create(
+      region_id: region.id,
+      seed: teams_array[current_index][0],
+      name: teams_array[current_index][1],
+      slot_id: slot.id
+    )
+  end
+end
