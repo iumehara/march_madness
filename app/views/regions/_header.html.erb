@@ -1,0 +1,31 @@
+<div class="title-bar">
+	<h2><%= @bracket.username %>'s Bracket!</h2>
+
+	<div class="row col-sm-12">
+		<div class="col-sm-2">
+			<h3>
+				<%= link_to_unless_current "#{@tournament.first_region.name} Region", region_path(id: @tournament.first_region.id, bracket_id: @bracket.id) %>
+			</h3>
+		</div>
+		<div class="col-sm-2">
+			<h3>
+				<%= link_to_unless_current "#{@tournament.second_region.name} Region", region_path(id: @tournament.second_region.id, bracket_id: @bracket.id) %>
+			</h3>
+		</div>
+		<div class="col-sm-2">
+			<h3>
+				<%= link_to_unless_current "#{@tournament.third_region.name} Region", region_path(id: @tournament.third_region.id, bracket_id: @bracket.id) %>
+			</h3>
+		</div>
+		<div class="col-sm-2">
+			<h3>
+				<%= link_to_unless_current "#{@tournament.fourth_region.name} Region", region_path(id: @tournament.fourth_region.id, bracket_id: @bracket.id) %>
+			</h3>
+		</div>
+		<div class="col-sm-2">
+			<h3>
+				<%= link_to_unless_current "Final 4!", region_path(id: @tournament.fourth_region.id, bracket_id: @bracket.id) %>
+			</h3>
+		</div>
+	</div>
+</div>

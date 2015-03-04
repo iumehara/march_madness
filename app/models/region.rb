@@ -1,4 +1,6 @@
 class Region < ActiveRecord::Base
+  belongs_to :tournament
+
   has_many :rounds
   has_many :games, through: :rounds
   has_many :teams
@@ -18,6 +20,10 @@ class Region < ActiveRecord::Base
     if rounds.where(starting_round: true).present?
       rounds.where(starting_round: true).first
     end
+  end
+
+  def total_points
+    100
   end
 
   private

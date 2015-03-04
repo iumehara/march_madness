@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>
+<%= @tournament.name %>
+</h1>
+
+<table>
+	<thead>
+		<tr>
+			<td>Name</td>
+			<td>Points</td>
+		</tr>
+	</thead>
+	<tbody>
+		<% @brackets.all.each do |bracket| %>
+			<tr>
+				<td>bracket.user_name</td>
+				<td>bracket.total_points</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+
+<%= link_to 'Fill Out a Bracket', new_tournament_bracket_path(@tournament.id), class: 'btn btn-primary' %>

@@ -22,18 +22,18 @@ teams_array = [
   [15, 'University of North Carolina']
 ]
 
-region = Region.find(1)
-starting_round = region.starting_round
-starting_games = starting_round.games
-current_index = -1
-starting_games.each_with_index do |game, _game_index|
-  game.slots.each_with_index do |slot, _slot_index|
-    current_index += 1
-    Team.create(
-      region_id: region.id,
-      seed: teams_array[current_index][0],
-      name: teams_array[current_index][1],
-      slot_id: slot.id
-    )
+Region.first(4).each do |region|
+  starting_games = region.starting_round.games
+  current_index = -1
+  starting_games.each_with_index do |game, _game_index|
+    game.slots.each_with_index do |slot, _slot_index|
+      current_index += 1
+      Team.create(
+        region_id: region.id,
+        seed: teams_array[current_index][0],
+        name: teams_array[current_index][1],
+        slot_id: slot.id
+      )
+    end
   end
 end

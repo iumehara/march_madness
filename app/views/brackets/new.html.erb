@@ -1,0 +1,17 @@
+<div>
+	<%= form_for @bracket, url: tournament_brackets_path do |f| %>
+		<%= f.label :username, "Your Name" %>
+		<%= f.text_field :username, placeholder: 'Bobby' %>
+		<%= f.label :nickname, "Your Nickname" %>
+		<%= f.text_field :nickname, placeholder: 'The Bobster' %>
+
+		<%= f.label :password, "Password" %>
+		<%= f.password_field :password %>
+
+		<%= f.label :password_confirmation, "Type it in again to be sure!" %>
+		<%= f.password_field :password_confirmation %>
+		<span class="input-group-btn">
+			<%= f.submit 'GO', class:'btn btn-primary' %>
+		</span>
+	<% end  %>
+</div>

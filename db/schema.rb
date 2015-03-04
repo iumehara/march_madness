@@ -11,16 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_150_302_041_802) do
+ActiveRecord::Schema.define(version: 20_150_304_043_036) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
   create_table 'brackets', force: :cascade do |t|
+    t.integer 'tournament_id'
     t.integer 'region_id'
-    t.integer 'user_id'
     t.integer 'status'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+    t.text 'username'
+    t.text 'nickname'
+    t.string 'password_digest'
+    t.datetime 'created_at',      null: false
+    t.datetime 'updated_at',      null: false
   end
 
   create_table 'games', force: :cascade do |t|
@@ -33,10 +36,11 @@ ActiveRecord::Schema.define(version: 20_150_302_041_802) do
   end
 
   create_table 'regions', force: :cascade do |t|
+    t.integer 'tournament_id'
     t.string 'name'
-    t.integer 'status',     default: 0
-    t.datetime 'created_at',             null: false
-    t.datetime 'updated_at',             null: false
+    t.integer 'status',        default: 0
+    t.datetime 'created_at',                null: false
+    t.datetime 'updated_at',                null: false
   end
 
   create_table 'rounds', force: :cascade do |t|
@@ -71,7 +75,7 @@ ActiveRecord::Schema.define(version: 20_150_302_041_802) do
     t.datetime 'updated_at', null: false
   end
 
-  create_table 'users', force: :cascade do |t|
+  create_table 'tournaments', force: :cascade do |t|
     t.string 'name'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
